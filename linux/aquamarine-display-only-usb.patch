@@ -1,0 +1,17 @@
+diff --git i/src/backend/drm/DRM.cpp w/src/backend/drm/DRM.cpp
+index 2f3dcc7..d8d4b5f 100644
+--- i/src/backend/drm/DRM.cpp
++++ w/src/backend/drm/DRM.cpp
+@@ -1121,8 +1121,10 @@ bool Aquamarine::CDRMBackend::registerGPU(SP<CSessionDevice> gpu_, SP<CDRMBacken
+ 
+     auto drmVerName = drmVer && drmVer->name ? drmVer->name : "unknown";
+     driver          = driverFromName(drmVerName);
+-    if (driver == AQ_BACKEND_GPU_DRIVER_EVDI) {
+-        // DisplayLink/evdi exposes KMS without a usable EGL renderer.
++    // KMS-only display drivers (DisplayLink/evdi, and the USB display drivers gud and udl)
++    // expose KMS without a usable EGL renderer: scan out buffers of the primary allocator directly.
++    const std::string_view DRIVER_NAME = drmVerName;
++    if (driver == AQ_BACKEND_GPU_DRIVER_EVDI || DRIVER_NAME == "gud" || DRIVER_NAME == "udl") {
+         primary          = {};
+         rendererRequired = false;
+     }

@@ -1,0 +1,14 @@
+# The PSP beside PSPLink keeps Sony's USB ID (054c:01c9), which Linux's gud
+# driver does not bind by itself. This tells gud about the ID, limited to
+# interface class 0xfe: that is sidecar's display interface; usbhostfs's
+# interface is class 0xff and stays with usbhostfs_pc, gud never asks it.
+# Not needed for the standalone app, which presents 1d50:614d.
+#
+#   sudo cp linux/51-pspkit-sidecar.rules /etc/udev/rules.d/ && sudo udevadm control --reload
+#
+# The ID is added once per boot (new_id keeps it); later appearances of the
+# PSP bind through it without this rule doing anything.
+ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="054c", ATTR{idProduct}=="01c9", RUN+="/bin/sh -c 'modprobe gud; grep -qsi \"054c 01c9\" /sys/bus/usb/drivers/gud/new_id || echo 054c 01c9 fe > /sys/bus/usb/drivers/gud/new_id'"
+
+# Let the active desktop session stream to the PSP when it needs a virtual output.
+SUBSYSTEM=="graphics", KERNEL=="fb[0-9]*", ATTR{name}=="guddrmfb", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="01c9", TAG+="uaccess"

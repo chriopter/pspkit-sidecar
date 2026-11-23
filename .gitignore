@@ -1,0 +1,14 @@
+# What build.mak leaves in psp/ and psp/app/
+*.o
+*.elf
+*.prx
+EBOOT.PBP
+PARAM.SFO
+
+# The test tools, compiled
+/gudtest
+/primetest
+
+# Local only: the patched aquamarine package and its original
+/dist/
+__pycache__/
