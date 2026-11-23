@@ -50,6 +50,32 @@ systemctl --user enable --now pspkit-sidecar-tray.service
 
 </details>
 
+## Omarchy
+
+The bar widget places the PSP on any edge of the main monitor. Drag the **PSP** rectangle into position, then choose its scale and workspace. The default is workspace 9.
+
+<details>
+<summary><b>Install the bar widget</b></summary>
+
+Complete the Linux PSPLink setup above and install the Hyprland streaming dependencies. From the repository root, run:
+
+```sh
+mkdir -p ~/.config/omarchy/plugins
+ln -s "$PWD/omarchy" ~/.config/omarchy/plugins/chriopter.sidecar
+omarchy plugin enable chriopter.sidecar --section right --before omarchy.monitor
+```
+
+For a manually powered PSP, run `./tray/bench.sh start` and open **PSP Sidecar** in the bar.
+
+</details>
+
+<details>
+<summary><b>Switch the PSP on through a relay</b></summary>
+
+Configure your relay with [pspkit-autoboot](https://github.com/chriopter/pspkit-autoboot). Place its checkout beside Sidecar or set `PSPKIT_AUTOBOOT=/absolute/path/to/autoboot.sh` in `~/.config/pspkit-sidecar.env`. **PSP On** power-cycles the console when needed. **PSP Off** shuts it down through PSPLink and leaves the relay on.
+
+</details>
+
 ## Development
 
 The [USB diagnostic](tests/gudtest.c) sends test patterns and measures throughput. The [DRM diagnostic](tests/primetest.c) checks framebuffer import and scanout. Both include build instructions. An optional [Aquamarine patch](linux/aquamarine-display-only-usb.patch) adds native handling for display-only USB devices.
