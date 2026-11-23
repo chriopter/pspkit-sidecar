@@ -4,6 +4,8 @@
 
 Tested on **PSP-1000** and **PSP-2000**. Press **SELECT** on the PSP to adjust brightness and idle dimming.
 
+![Linux desktop on a PSP, showing a cathedral scene and a terminal reporting the 480 × 272 USB display](assets/psp-linux-desktop.png)
+
 ## Linux
 
 You need a USB data cable, a PSP with custom firmware that supports kernel modules, and a Linux kernel with the `gud` driver. From the repository root, build both PSP files with the pspdev toolchain on your `PATH`.
