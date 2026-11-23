@@ -1,0 +1,16 @@
+# Link this unit from the checkout so %Y resolves to its tray directory.
+#
+#   ln -s "$PWD/tray/pspkit-sidecar-tray.service" ~/.config/systemd/user/
+#   systemctl --user daemon-reload && systemctl --user enable --now pspkit-sidecar-tray
+
+[Unit]
+Description=PSP Sidecar tray icon
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart="%Y/sidecar-tray.py"
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

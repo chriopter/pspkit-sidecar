@@ -36,6 +36,20 @@ On Hyprland, Sidecar assigns the display its own workspace. If Hyprland skips th
 
 </details>
 
+<details>
+<summary><b>Install the optional system tray</b></summary>
+
+The tray menu needs a StatusNotifierItem host, PyGObject and the Dbusmenu GLib introspection bindings. Link the unit from the checkout to start it with your graphical session.
+
+```sh
+mkdir -p ~/.config/systemd/user
+ln -s "$PWD/tray/pspkit-sidecar-tray.service" ~/.config/systemd/user/
+systemctl --user daemon-reload
+systemctl --user enable --now pspkit-sidecar-tray.service
+```
+
+</details>
+
 ## Development
 
 The [USB diagnostic](tests/gudtest.c) sends test patterns and measures throughput. The [DRM diagnostic](tests/primetest.c) checks framebuffer import and scanout. Both include build instructions. An optional [Aquamarine patch](linux/aquamarine-display-only-usb.patch) adds native handling for display-only USB devices.
