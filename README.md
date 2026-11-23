@@ -54,6 +54,8 @@ systemctl --user enable --now pspkit-sidecar-tray.service
 
 The bar widget places the PSP on any edge of the main monitor. Drag the **PSP** rectangle into position, then choose its scale and workspace. The default is workspace 9.
 
+<img src="assets/omarchy-sidecar.png" width="305" alt="Omarchy Sidecar widget showing the PSP below the main monitor, at 80% scale on workspace 9">
+
 <details>
 <summary><b>Install the bar widget</b></summary>
 
