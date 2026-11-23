@@ -4,7 +4,7 @@
 
 Tested on **PSP-1000** and **PSP-2000**. Press **SELECT** on the PSP to adjust brightness and idle dimming.
 
-![Linux desktop on a PSP, showing a cathedral scene and a terminal reporting the 480 × 272 USB display](assets/psp-linux-desktop.png)
+![Illustration of a PSP beside a PC monitor, connected over USB and showing a second Linux workspace](assets/psp-linux-desktop.png)
 
 ## Linux
 
